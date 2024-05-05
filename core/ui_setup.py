@@ -1,5 +1,3 @@
-#! /usr/bin/python3
-# 本文件主要存储UI界面相关代码
 from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
     QMetaObject, QObject, QPoint, QRect,
     QSize, QTime, QUrl, Qt)
@@ -16,7 +14,6 @@ from processing import (detector, tracker, algorithm, save_video)
 from processing.algorithm import algo_switch
 class Ui_MainWindow(object):
     def __init__(self):
-        self.capture = cv2.VideoCapture(0)
         self.centralwidget = None
         self.label = None
         #self.label_2 = None
@@ -34,24 +31,23 @@ class Ui_MainWindow(object):
         # label
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(500, 40, 960, 540))
+        self.label.setGeometry(QRect(200, 40, 960, 540))
         # label_2
         #self.label_2 = QLabel(self.centralwidget)
         #self.label_2.setObjectName(u"label_2")
-        #self.label_2.setGeometry(QRect(1200, 40, 960, 540))
-
+        #self.label_2.setGeometry(QRect(1000, 40, 960, 540))
         # 开始和暂停按钮
 
         # pushButton1_1
         self.pushButton11 = QPushButton(self.centralwidget)
         self.pushButton11.setObjectName(u"pushButton11")
-        self.pushButton11.setGeometry(QRect(200, 600, 160, 120))
+        self.pushButton11.setGeometry(QRect(200, 600, 120, 100))
         self.pushButton11.setText("开始监控")
         self.pushButton11.clicked.connect(self.startMonitoring)
         # pushButton1_2
         self.pushButton12 = QPushButton(self.centralwidget)
         self.pushButton12.setObjectName(u"pushButton12")
-        self.pushButton12.setGeometry(QRect(200, 800, 160, 120))
+        self.pushButton12.setGeometry(QRect(200, 800, 120, 100))
         self.pushButton12.setText("暂停监控")
         self.pushButton12.clicked.connect(self.stopMonitoring)
 
@@ -59,21 +55,21 @@ class Ui_MainWindow(object):
         # pushButton2_1
         self.pushButton21 = QPushButton(self.centralwidget)
         self.pushButton21.setObjectName(u"pushButton21")
-        self.pushButton21.setGeometry(QRect(400, 600, 160, 120))
+        self.pushButton21.setGeometry(QRect(400, 600, 120, 100))
         self.pushButton21.setText("高斯滤波")
         self.pushButton21.clicked.connect(lambda:algo_switch.switch_algorithm("gaussFilter"))
 
         # pushButton2_2
         self.pushButton22 = QPushButton(self.centralwidget)
         self.pushButton22.setObjectName(u"pushButton22")
-        self.pushButton22.setGeometry(QRect(400, 800, 160, 120))
+        self.pushButton22.setGeometry(QRect(400, 800, 120, 100))
         self.pushButton22.setText("双边滤波")
         self.pushButton22.clicked.connect(lambda:algo_switch.switch_algorithm("bilatFilter"))
 
         # pushButton2_3
         self.pushButton23 = QPushButton(self.centralwidget)
         self.pushButton23.setObjectName(u"pushButton23")
-        self.pushButton23.setGeometry(QRect(400, 1000, 160, 120))
+        self.pushButton23.setGeometry(QRect(600, 600, 120, 100))
         self.pushButton23.setText("中值滤波")
         self.pushButton23.clicked.connect(lambda:algo_switch.switch_algorithm("meanFilter"))
 
@@ -81,7 +77,7 @@ class Ui_MainWindow(object):
         # pushButton3_1
         self.pushButton31 = QPushButton(self.centralwidget)
         self.pushButton31.setObjectName(u"pushButton31")
-        self.pushButton31.setGeometry(QRect(600, 600, 160, 120))
+        self.pushButton31.setGeometry(QRect(600, 800, 120, 100))
         self.pushButton31.setText("浮点灰度处理")
         self.pushButton31.clicked.connect(lambda:algo_switch.switch_algorithm("floatGray"))
 
@@ -89,28 +85,28 @@ class Ui_MainWindow(object):
         # pushButton3_2
         self.pushButton32 = QPushButton(self.centralwidget)
         self.pushButton32.setObjectName(u"pushButton32")
-        self.pushButton32.setGeometry(QRect(600, 800, 160, 120))
+        self.pushButton32.setGeometry(QRect(800, 600, 120, 100))
         self.pushButton32.setText("整型灰度处理")
         self.pushButton32.clicked.connect(lambda:algo_switch.switch_algorithm("intGray"))
 
         # pushButton3_3
         self.pushButton33 = QPushButton(self.centralwidget)
         self.pushButton33.setObjectName(u"pushButton33")
-        self.pushButton33.setGeometry(QRect(600, 1000, 160, 120))
+        self.pushButton33.setGeometry(QRect(800, 800, 120, 100))
         self.pushButton33.setText("移位灰度处理")
         self.pushButton33.clicked.connect(lambda:algo_switch.switch_algorithm("moveGray"))
 
         # pushButton4_1
         self.pushButton41 = QPushButton(self.centralwidget)
         self.pushButton41.setObjectName(u"pushButton41")
-        self.pushButton41.setGeometry(QRect(800, 600, 160, 120))
+        self.pushButton41.setGeometry(QRect(1000, 600, 120, 100))
         self.pushButton41.setText("切换质心追踪算法")
         self.pushButton41.clicked.connect(lambda:algo_switch.switch_algorithm("centroid"))
 
         # pushButton4_2
         self.pushButton42 = QPushButton(self.centralwidget)
         self.pushButton42.setObjectName(u"pushButton42")
-        self.pushButton42.setGeometry(QRect(800, 800, 160, 120))
+        self.pushButton42.setGeometry(QRect(1000, 800, 120, 100))
         self.pushButton42.setText("保存视频")
         self.pushButton42.clicked.connect(lambda:save_video.video_record())
 
@@ -119,7 +115,7 @@ class Ui_MainWindow(object):
         QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"行人跟踪系统", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"跨场景跟踪系统", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"录像暂停中", None))
         #self.label_2.setText(QCoreApplication.translate("MainWindow", u"录像暂停中", None))
     # retranslateUi
@@ -133,9 +129,7 @@ class Ui_MainWindow(object):
     def stopMonitoring(self):
         self.timer.stop() # 停止计时器
         #self.capture2.release() # 释放摄像头对象
-        if self.capture:
-            self.capture.release()
-            self.capture = None
+        self.capture.release()
         print("程序已结束！")
 
 
@@ -266,11 +260,12 @@ class Ui_MainWindow(object):
                                             org=camera.draw_text_postion,
                                             fontFace=camera.font_draw_number,
                                             fontScale=1, color=(255, 255, 255), thickness=2)
+            camera.tmp_im = output_image_frame
             output_image_frame = cv2.cvtColor(output_image_frame, cv2.COLOR_BGR2RGB)
-            im = algorithm.algo_switch.check_active_algo(im)
-            camera.tmp_im2 = im
-            im = cv2.cvtColor(im , cv2.COLOR_BGR2RGB)
-            self.pixmap1 = QImage(output_image_frame, 960, 540, QImage.Format_RGB888)
+            im = algorithm.algo_switch.check_active_algo(output_image_frame)
+            #camera.tmp_im2 = im
+            #im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
+            self.pixmap1 = QImage(im, 960, 540, QImage.Format_RGB888)
             self.pixmap1 = QPixmap.fromImage(self.pixmap1)
             #self.pixmap2 = QImage(im2, 960, 540, QImage.Format_RGB888)
             #self.pixmap2 = QPixmap.fromImage(self.pixmap2)

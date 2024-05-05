@@ -40,7 +40,6 @@ class Detector:
         pred = Detector.m(img, augment=False)[0]
         pred = pred.float()
         pred = non_max_suppression(pred, Detector.threshold, 0.4)
-        return pred
 
         boxes = []
         for det in pred:

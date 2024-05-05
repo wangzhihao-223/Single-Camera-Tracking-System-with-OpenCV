@@ -1,4 +1,4 @@
-import cv2
+
 import time
 import threading
 from core.camera import camera
@@ -17,16 +17,14 @@ class SaveVideoThread(threading.Thread):
         
         while True:
             with self.lock:
-                # 假设 camera.tmp_im2 是你捕获的图像，这里简化处理
-                camera.result.write(camera.tmp_im2)
-                print("记录1帧")
+                # camera.tmp_im2 是捕获的视频帧
+                camera.result.write(camera.tmp_im1)
             time.sleep(self.frame_interval)
             frame_time += self.frame_interval
             
             # 检查是否录制结束
             if frame_time >= self.start_time + 5:  # 后5秒
                 self.success = True
-                cv2.imwrite("tmp_data/video_test.jpg", camera.tmp_im2)
                 camera.result.release()
                 break
 
@@ -37,6 +35,5 @@ class SaveVideoThread(threading.Thread):
 
 def video_record():
     # 创建线程并启动
-    print(camera.tmp_im2)
     save_video_thread = SaveVideoThread()
     save_video_thread.start()

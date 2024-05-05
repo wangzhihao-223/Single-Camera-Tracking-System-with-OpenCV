@@ -14,7 +14,6 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QPalette, QPixmap, QRadialGradient, QTransform)
 
 
-
 if __name__ == '__main__':
     app = QApplication([])
     win = QMainWindow()
