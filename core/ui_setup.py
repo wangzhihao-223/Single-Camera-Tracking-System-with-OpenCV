@@ -267,7 +267,7 @@ class Ui_MainWindow(object):
                                             fontFace=camera.font_draw_number,
                                             fontScale=1, color=(255, 255, 255), thickness=2)
             output_image_frame = cv2.cvtColor(output_image_frame, cv2.COLOR_BGR2RGB)
-            im = algorithm.algo_switch.check_active_algo(output_image_frame)
+            im = algorithm.algo_switch.check_active_algo(im)
             camera.tmp_im2 = im
             im = cv2.cvtColor(im , cv2.COLOR_BGR2RGB)
             self.pixmap1 = QImage(output_image_frame, 960, 540, QImage.Format_RGB888)
