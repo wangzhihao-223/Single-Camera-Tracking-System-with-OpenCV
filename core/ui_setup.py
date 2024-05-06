@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         # label
         self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(200, 40, 960, 540))
+        self.label.setGeometry(QRect(200, 40, 680, 480))
         # label_2
         #self.label_2 = QLabel(self.centralwidget)
         #self.label_2.setObjectName(u"label_2")
@@ -140,7 +140,7 @@ class Ui_MainWindow(object):
             _,im = camera.capture.read()
             #_,im2 = camera.capture2.read()
             #缩小尺寸，1920x1080->960x540
-            im = cv2.resize(im, (960, 540))
+            im = cv2.resize(im, (640,480))
             #im2 = cv2.resize(im2, (960, 540))
             list_bboxs = []
             bboxes = detector.Detector.detect(im)
@@ -264,8 +264,8 @@ class Ui_MainWindow(object):
             output_image_frame = cv2.cvtColor(output_image_frame, cv2.COLOR_BGR2RGB)
             im = algorithm.algo_switch.check_active_algo(output_image_frame)
             #camera.tmp_im2 = im
-            #im = cv2.cvtColor(im, cv2.COLOR_BGR2RGB)
-            self.pixmap1 = QImage(im, 960, 540, QImage.Format_RGB888)
+            #im2 = cv2.cvtColor(im2, cv2.COLOR_BGR2RGB)
+            self.pixmap1 = QImage(im, 640, 480, QImage.Format_RGB888)
             self.pixmap1 = QPixmap.fromImage(self.pixmap1)
             #self.pixmap2 = QImage(im2, 960, 540, QImage.Format_RGB888)
             #self.pixmap2 = QPixmap.fromImage(self.pixmap2)
