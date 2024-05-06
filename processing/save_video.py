@@ -18,7 +18,7 @@ class SaveVideoThread(threading.Thread):
         while True:
             with self.lock:
                 # camera.tmp_im2 是捕获的视频帧
-                camera.result.write(camera.tmp_im1)
+                camera.result.write(camera.tmp_im)
             time.sleep(self.frame_interval)
             frame_time += self.frame_interval
             

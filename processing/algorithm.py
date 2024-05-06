@@ -33,25 +33,27 @@ class algo_filter():
 class algo_gray():
     def floatGray(frame):
         adjustment = 1.5
-        # 浮点灰度处理
-        grayFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        # Convert pixel values to integers
-        frame_int = grayFrame.astype(int)
+        # Convert the frame to grayscale
+        #gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        # Convert pixel values to float32
+        frame_float32 = frame.astype(np.float32)
         # Apply brightness adjustment to each pixel
-        adjusted_frame_int = frame_int + adjustment
+        adjusted_frame_float32 = frame_float32 * adjustment
         # Limit pixel values to the range 0-255
-        adjusted_frame_int[adjusted_frame_int < 0] = 0
-        adjusted_frame_int[adjusted_frame_int > 255] = 255
+        adjusted_frame_float32[adjusted_frame_float32 < 0] = 0
+        adjusted_frame_float32[adjusted_frame_float32 > 255] = 255
         # Convert pixel values back to uint8 type
-        adjusted_frame = adjusted_frame_int.astype(np.uint8)
+        adjusted_frame = adjusted_frame_float32.astype(np.uint8)
         return adjusted_frame
+
+
     
 
     def intGray(frame):
         # 整型灰度处理
-        grayFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        #grayFrame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
         # Convert pixel values to integers
-        frame_int = grayFrame.astype(int)
+        frame_int = frame.astype(int)
         # Example processing: Invert the image
         inverted_frame_int = 255 - frame_int
         # Convert pixel values back to uint8 type
